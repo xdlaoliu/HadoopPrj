@@ -46,11 +46,27 @@ public class TestHive {
         }
     }
 
+    @Test
+    public void testDescTable() throws SQLException {
+        ResultSet resultSet = stmt.executeQuery("desc bf_log_20170712");
+        while (resultSet.next()){
+            System.out.println(resultSet.getString(1));
+        }
+    }
+
+    @Test
+    public void testSelectCount() throws SQLException {
+        ResultSet resultSet = stmt.executeQuery("select count(1) from bf_log_20170712");
+        while (resultSet.next()){
+            System.out.println(resultSet.getString(1));
+        }
+    }
+
     @After
     public void closeConn() throws SQLException {
         stmt.close();
         conn.close();
         System.out.println("Connection is closed");
     }
-
+    
 }
